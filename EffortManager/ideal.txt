@@ -1,0 +1,7 @@
+Function:
+1. Quản lý chi/thu
+2. Quản lý quỹ
+3. Quản lý loại (ngày, tháng, năm)
+4. Thống kê
+- Chi/thu theo tháng/năm/tổng
+- Chi/thu theo quỹ
