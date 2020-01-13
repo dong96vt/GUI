@@ -1,94 +1,123 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset='utf-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Loại thu chi</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
-        <link rel='stylesheet' type='text/css' media='screen' href='bootstrap-4.4.1-dist\css\bootstrap.min.css'>
-        <link rel='stylesheet' type='text/css' media='screen' href='MyStyle\style.css'>
-        <script src="jquery\jquery-3.4.1.min.js"></script>
-        <script src='bootstrap-4.4.1-dist\js\bootstrap.min.js'></script>
-    </head>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Loại thu chi</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='bootstrap-4.4.1-dist\css\bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='MyStyle\style.css'>
+    <script src="jquery\jquery-3.4.1.min.js"></script>
+    <script src='bootstrap-4.4.1-dist\js\bootstrap.min.js'></script>
+    <script src="MyScript\script.js"></script>
+</head>
 
-    <body>
-        <!--Header-->
-        <div class="header">
-            <iframe width="100%" height="60px" src="layout_header.html"></iframe>
-        </div>
-        <!--Header-->
-        <!--Content-->
-        <div id="container" class="container">
-            <div class="row">
-                <div id="nav" class="col-2 list-group">
-                    <a class="list-group-item list-group-item-action" href="list_RAE.html">Thu chi</a>
-                    <a class="list-group-item list-group-item-action active" href="list_type.html">Loại thu chi</a>
-                    <a class="list-group-item list-group-item-action" href="list_fund.html">Quỹ</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-3">Thống kê</a>
-                </div>
-                <div name="content-col" class="col">
-                    <h2 class="display-6">Loại thu chi</h2>
-                    <hr>
-                    <form id="form-search" class="form-inline" method="get" action="#">
-                        <input type="text" class="form-control" name="" id="" placeholder="Mã">
-                        <input type="text" class="form-control" name="" id="" placeholder="Tên">
-                        <input type="submit" class="btn btn-primary" value="Tìm kiếm">
-                    </form>
-                    <hr>
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active" href="#">Thu</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Chi</a>
-                                </li>
-                            </ul>
+<body>
+    <!--Header-->
+    <div class="header">
+        <iframe width="100%" height="60px" src="layout_header.html"></iframe>
+    </div>
+    <!--Header-->
+    <!--Content-->
+    <div id="container" class="container">
+        <div class="row">
+            <div id="nav" class="col-2 list-group">
+                <a class="list-group-item list-group-item-action" href="list_RAE.html">Thu chi</a>
+                <a class="list-group-item list-group-item-action active" href="list_type.html">Loại thu chi</a>
+                <a class="list-group-item list-group-item-action" href="list_fund.html">Quỹ</a>
+                <a class="list-group-item list-group-item-action" href="statistics.html">Thống kê</a>
+            </div>
+            <div name="content-col" class="col">
+                <h2 class="display-6">Loại thu chi</h2>
+                <hr>
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a id="nav_find_type" class="nav-link" href="#">Tìm kiếm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="nav_add_type" class="nav-link" href="#">Thêm</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--add-->
+                    <div id="add_type" class="card-body">
+                        <form id="form-search" class="form-inline" method="get" action="#">
+                            <input type="text" class="form-control" name="" id="" placeholder="Mã">
+                            <input type="text" class="form-control" name="" id="" placeholder="Tên">
+                            <input type="submit" class="btn btn-success" value="Thêm">
+                        </form>
+                        <hr>
+                    </div>
+                    <!--find-->
+                    <div id="find_type" class="card-body">
+                        <form id="form-search" class="form-inline" method="get" action="#">
+                            <input type="text" class="form-control" name="" id="" placeholder="Mã">
+                            <input type="text" class="form-control" name="" id="" placeholder="Tên">
+                            <input type="submit" class="btn btn-primary" value="Tìm kiếm">
+                        </form>
+                        <hr>
+                        <div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content col-sm-8 offset-2">
+                                    <form method="get" action="">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="my-modal-title">Thông tin chi tiết</h5>
+                                            <button class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body form-inline">
+                                            <div class="form-group">
+                                                <label for="SID">Mã</label>
+                                                <input id="SID" style="margin: 10px;" class="form-control" type="text" readonly name="SID">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="name">Tên</label>
+                                                <input id="name" style="margin: 10px;" class="form-control" type="text" name="name">
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input class="btn btn-success" type="submit" value="Lưu">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <table class="table table-sm table-bordered table-striped text-center">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th width=1>Mã</th>
-                                        <th>Tên</th>
-                                        <th width=200>Thời gian</th>
-                                        <th width=200>Giá trị (VNĐ)</th>
-                                        <th width=1></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Lương</td>
-                                        <td>10:05:28 12/01/2020</td>
-                                        <td>7,000,000</td>
-                                        <td>
-                                            <a href="#">
-                                                <i id="delete" class="material-icons">delete</i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="3">Tổng</th>
-                                        <th>7,000,000</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
+                        <table class="table table-sm table-bordered table-hover text-center">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th width=1>Mã</th>
+                                    <th>Tên</th>
+                                    <th width=1></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-toggle="modal" data-target="#my-modal">1</td>
+                                    <td data-toggle="modal" data-target="#my-modal">Lương</td>
+                                    <td>
+                                        <a href="#" onclick="return confirm_delete()">
+                                            <i id="delete" class="material-icons">delete</i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!--Content-->
-        <!-- Footer -->
-        <div class="footer">
-            <iframe width="100%" height="60px" src="layout_footer.html"></iframe>
-        </div>
-        <!-- Footer -->
-    </body>
+    </div>
+    <!--Content-->
+    <!-- Footer
+    <div class="footer">
+        <iframe width="100%" height="60px" src="layout_footer.html"></iframe>
+    </div>
+    Footer -->
+</body>
 
 </html>
